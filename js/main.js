@@ -12,7 +12,7 @@ const randomNumber = function (min, max, n) {
   }
 
   //https://learn.javascript.ru/task/random-int-min-max
-  let rand = startNumber + Math.random() * (endNumber + 1 - startNumber);
+  const rand = startNumber + Math.random() * (endNumber + 1 - startNumber);
   return rand.toFixed(n);
 }
 
