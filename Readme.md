@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Elena Veliar](https://up.htmlacademy.ru/javascript/22/user/1452523).
-* Наставник: `Владимир Коршунов`.
+* Наставник: [Павел Лукин](https://htmlacademy.ru/profile/id1313529).
 
 ---
 
