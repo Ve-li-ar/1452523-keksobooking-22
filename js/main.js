@@ -1,20 +1,93 @@
-/*Функция, возвращающая случайное целое число из переданного диапазона включительно*/
-const randomNumber = function (min, max, n) {
-  if (min < 0 || max < 0) return null; //неверный диапазон. Чтобы min и max были больше нуля
-  if (min == max) return min.toFixed(n);
-  let startNumber = min;
-  let endNumber = max;
+'use strict';
 
-  //если начало диапазона больше конца диапазона - поменять местами
-  if (startNumber > endNumber) {
-    startNumber = max;
-    endNumber = min;
+const HOUSING_TYPES = [
+  'palace',
+  'flat',
+  'house',
+  'bungalow',
+];
+
+const FEATURES = [
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner',
+];
+
+const CHECK_IN_TIMES = [
+  '12:00',
+  '13:00',
+  '14:00',
+];
+
+const CHECK_OUT_TIMES = [
+  '12:00',
+  '13:00',
+  '14:00',
+];
+
+const OPTION_PHOTOS = [
+  'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
+  'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
+  'http://o0.github.io/assets/images/tokyo/hotel3.jpg',
+];
+
+//Нужно получить массив из 10 случайно сгенерированных объектов:
+const apartments__number = 10;
+
+//cлучайное число с плавающей точкой
+function getRandomFloat(min, max, n) {
+  if (max > min && min >= 0) {
+
+    return (Math.random() * (max - min) + min).toFixed(n);
   }
-
-  //https://learn.javascript.ru/task/random-int-min-max
-  const rand = startNumber + Math.random() * (endNumber + 1 - startNumber);
-  return rand.toFixed(n);
+  throw new Error('ERROR!');
 }
 
-randomNumber(2, 6);
-randomNumber(3, 5, 9);
+//случайное число
+function getRandom(min, max) {
+  return getRandomFloat(min, max, 0);
+}
+
+//случайный элемент массива
+function getRandomArrayElement(array) {
+  return array[getRandom(0, array.length - 1)];
+}
+
+//случайная длинна массива (?)
+function getRandomArrayLength(array) {
+  return array.slice(Math.floor(Math.random() * (array.length - 1)));
+}
+
+function createApartment() {
+  let locationX = getRandomFloat(35.65000, 36.70000, 5);
+  let locationY = getRandomFloat(35.65000, 36.70000, 5);
+  return {
+    author: {
+      avatar: `img/avatars/user0${getRandom(1, 8)}.png`,
+    },
+    offer: {
+      title: `Объявление №${getRandom(1, 500)}`,
+      address: `${locationX}, ${locationY}`,
+      price: getRandom(0, 5000),
+      type: getRandomArrayElement(HOUSING_TYPES),
+      rooms: getRandom(0, 100),
+      guests: getRandom(0, 500),
+      checkin: getRandomArrayElement(CHECK_IN_TIMES),
+      checkout: getRandomArrayElement(CHECK_OUT_TIMES),
+      features: getRandomArrayLength(FEATURES),
+      description: 'Этот отель расположен в тихом уголке рядом с рекой, в историческом центре города',
+      photos: getRandomArrayLength(OPTION_PHOTOS),
+    },
+    location: {
+      x: locationX,
+      y: locationY,
+    },
+  }
+}
+
+const cards = new Array(apartments__number).fill(null).map(() => createApartment());
+
+cards;
