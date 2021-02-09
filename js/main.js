@@ -1,13 +1,13 @@
 'use strict';
 
-const housing__types = [
+const HOUSING_TYPES = [
   'palace',
   'flat',
   'house',
   'bungalow',
 ];
 
-const features = [
+const FEATURES = [
   'wifi',
   'dishwasher',
   'parking',
@@ -16,19 +16,19 @@ const features = [
   'conditioner',
 ];
 
-const check__in__times = [
+const CHECK_IN_TIMES = [
   '12:00',
   '13:00',
   '14:00',
 ];
 
-const check__out__times = [
+const CHECK_OUT_TIMES = [
   '12:00',
   '13:00',
   '14:00',
 ];
 
-const option__photos = [
+const OPTION_PHOTOS = [
   'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
   'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg',
@@ -53,9 +53,7 @@ function getRandom(min, max) {
 
 //случайный элемент массива
 function getRandomArrayElement(array) {
-  let item;
-  item = array[getRandom(0, array.length - 1)];
-  return item;
+  return array[getRandom(0, array.length - 1)];
 }
 
 //случайная длинна массива (?)
@@ -75,14 +73,14 @@ function createApartment() {
       title: 'Объявление № {getRandom(1, 500)}',
       address: '{locationX}, {locationY}',
       price: getRandom(0, 5000),
-      type: getRandomArrayElement(housing__types),
+      type: getRandomArrayElement(HOUSING_TYPES),
       rooms: getRandom(0, 100),
       guests: getRandom(0, 500),
-      checkin: getRandomArrayElement(check__in__times),
-      checkout: getRandomArrayElement(check__out__times),
-      features: getRandomArrayLength(features),
+      checkin: getRandomArrayElement(CHECK_IN_TIMES),
+      checkout: getRandomArrayElement(CHECK_OUT_TIMES),
+      features: getRandomArrayLength(FEATURES),
       description: 'Этот отель расположен в тихом уголке рядом с рекой, в историческом центре города',
-      photos: getRandomArrayLength(option__photos),
+      photos: getRandomArrayLength(OPTION_PHOTOS),
     },
     location: {
       x: locationX,
