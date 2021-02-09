@@ -61,17 +61,16 @@ function getRandomArrayLength(array) {
   return array.slice(Math.floor(Math.random() * (array.length - 1)));
 }
 
-
 function createApartment() {
   let locationX = getRandomFloat(35.65000, 36.70000, 5);
   let locationY = getRandomFloat(35.65000, 36.70000, 5);
   return {
     author: {
-      avatar: 'img/avatars/user0{getRandom(1, 8)}.png',
+      avatar: `img/avatars/user0{getRandom(1, 8)}.png`,
     },
     offer: {
-      title: 'Объявление № {getRandom(1, 500)}',
-      address: '{locationX}, {locationY}',
+      title: `Объявление № {getRandom(1, 500)}`,
+      address: `{locationX}, {locationY}`,
       price: getRandom(0, 5000),
       type: getRandomArrayElement(HOUSING_TYPES),
       rooms: getRandom(0, 100),
