@@ -3,9 +3,8 @@ import { createCard } from './card.js';
 
 const cards = new Array(apartmentsNumber).fill(null).map(() => createApartment());
 
-const arrayCard = createCard(createApartment[0]);
+const arrayCard = createCard(cards[0]);
+
 const mapCanvas = document.querySelector('#map-canvas');
 
 mapCanvas.appendChild(arrayCard);
-
-cards(apartmentsNumber);
