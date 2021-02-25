@@ -1,3 +1,4 @@
+
 import { apartmentsNumber, createApartment } from './data.js';
 import { createCard } from './card.js';
 
