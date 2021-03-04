@@ -1,15 +1,15 @@
-/* global L:readonly */
-const map = L.map('map')
+const map = window.L.map('map-canvas')
+
   .setView({
     lat: 35.6894,
     lng: 139.692,
   }, 12);
 
-L.tileLayer(
+window.L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  },
-).addTo(map);
+  })
+  .addTo(map);
 
 export { map };

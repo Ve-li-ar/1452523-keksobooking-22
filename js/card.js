@@ -12,7 +12,7 @@ const createCard = (card) => {
   cardExample.querySelector('.popup__features').textContent = card.offer.features;
   cardExample.querySelector('.popup__description').textContent = card.offer.description;
   cardExample.querySelector('.popup__photos').src = card.offer.photos;
-  cardExample.querySelector('.popup__avatar').src = card.avthor.avatar;
+  cardExample.querySelector('.popup__avatar').src = card.author.avatar;
 
   return cardExample;
 }

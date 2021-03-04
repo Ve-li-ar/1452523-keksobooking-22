@@ -88,4 +88,6 @@ function createApartment() {
   }
 }
 
-export { apartmentsNumber, createApartment };
+const cards = new Array(apartmentsNumber).fill(null).map(() => createApartment());
+
+export { apartmentsNumber, createApartment, cards };
