@@ -26,10 +26,10 @@ const initMap = () => {
   return map;
 }
 
-// Ставим главный пин на карту
 const map = initMap();
-const initMainPin = (map) => {
 
+// Ставим главный пин на карту
+const initMainPin = (map) => {
   const mainPinMarker = window.L.marker(
     {
       lat: 35.6894,
@@ -44,6 +44,8 @@ const initMainPin = (map) => {
       }),
     },
   )
+
+  // При перемещении главного пина меняется значение поля ввода адреса
 
   mainPinMarker.on('moveend', (evt) => {
     const adForm = document.querySelector('.ad-form');
@@ -60,6 +62,7 @@ const initMainPin = (map) => {
 initMainPin(map);
 
 // При перемещении главного пина меняется значение поля ввода адреса
+
 const createPopupCard = (apartment) => {
   const popupElement = createCard(apartment);
   popupElement.querySelector('.popup__text--address').textContent =
@@ -89,5 +92,6 @@ const initMainPins = (map) => {
         keepInView: true,
       });
   });
+
 };
 initMainPins(map);

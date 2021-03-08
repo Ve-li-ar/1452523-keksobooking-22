@@ -62,7 +62,7 @@ function getRandomArrayLength(array) {
 }
 
 function createApartment() {
-
+  // TODO тут я изменил координаты что бы пины на карте были по-кучней
   let locationX = getRandomFloat(35.5000, 35.90000, 5);
   let locationY = getRandomFloat(139.50000, 139.90000, 5);
   return {
