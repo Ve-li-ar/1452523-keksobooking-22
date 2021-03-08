@@ -1,4 +1,4 @@
-function nojs() {
+const nojs = () => {
   if (document.body.classList.contains('.no-js')) {
     const form = document.querySelector('.ad-form');
     const mapFilter = document.querySelector('.map-filters');
@@ -8,6 +8,6 @@ function nojs() {
     form.querySelector('fieldset').setAttribute('disabled', 'disabled');
     document.removeChild(document.lastChild);
   }
-}
+};
 
 export { nojs };
