@@ -62,8 +62,9 @@ function getRandomArrayLength(array) {
 }
 
 function createApartment() {
-  let locationX = getRandomFloat(35.65000, 36.70000, 5);
-  let locationY = getRandomFloat(35.65000, 36.70000, 5);
+
+  let locationX = getRandomFloat(35.5000, 35.90000, 5);
+  let locationY = getRandomFloat(139.50000, 139.90000, 5);
   return {
     author: {
       avatar: `img/avatars/user0${getRandom(1, 8)}.png`,
@@ -88,4 +89,6 @@ function createApartment() {
   }
 }
 
-export { apartmentsNumber, createApartment };
+const createApartments = () => new Array(apartmentsNumber).fill(null).map(() => createApartment());
+
+export { createApartments };
