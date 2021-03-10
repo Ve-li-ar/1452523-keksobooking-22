@@ -1,3 +1,4 @@
+//создание карточки
 'use strict';
 
 const HOUSING_TYPES = [

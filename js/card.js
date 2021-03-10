@@ -1,3 +1,4 @@
+//создание карточки
 const createCard = (card) => {
   const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 

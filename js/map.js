@@ -6,9 +6,8 @@
 // Установка слушателей  -
 // Экспорты
 
-import { createApartments } from './data.js';
 import { createCard } from './card.js';
-
+//инициализация карты
 const initMap = () => {
   const map = window.L.map('map-canvas')
 
@@ -26,7 +25,7 @@ const initMap = () => {
   return map;
 }
 
-const map = initMap();
+
 
 // Ставим главный пин на карту
 const initMainPin = (map) => {
@@ -59,7 +58,7 @@ const initMainPin = (map) => {
   mainPinMarker.addTo(map);
 };
 
-initMainPin(map);
+
 
 // При перемещении главного пина меняется значение поля ввода адреса
 
@@ -71,8 +70,9 @@ const createPopupCard = (apartment) => {
   return popupElement;
 }
 
-const initMainPins = (map) => {
-  createApartments().forEach((item) => {
+//инициализация пинов
+const initMainPins = (map, apartments) => {
+  apartments().forEach((item) => {
 
     const icon = window.L.icon({
       iconUrl: 'img/pin.svg',
@@ -92,6 +92,6 @@ const initMainPins = (map) => {
         keepInView: true,
       });
   });
-
 };
-initMainPins(map);
+
+export { initMainPins, initMainPin, initMap }

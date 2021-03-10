@@ -1,2 +1,14 @@
 import './util.js';
 import './map.js';
+import { getData } from './data-server.js';
+import { initMainPins, initMainPin, initMap } from './map.js';
+//import { deactivateForm, activateForm } from './util.js'
+
+
+
+getData((apartments) => {
+
+  const map = initMap();
+  initMainPin(map);
+  initMainPins(map, apartments);
+})
