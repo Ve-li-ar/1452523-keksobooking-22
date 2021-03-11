@@ -3,7 +3,7 @@ const POST_URL = 'https://22.javascript.pages.academy/keksobooking';
 import { showAlert } from './util.js';
 
 //приемка данных с сервера
-const getData = (onSuccess, onError) => () => {
+const getData = (onSuccess, onError) => {
   return fetch(GET_URL,
     {
       method: 'GET',
@@ -14,7 +14,7 @@ const getData = (onSuccess, onError) => () => {
       if (response.ok) {
         return response.json();
       } else {
-        showAlert('Не удалось загрузить данные с сервера :(');
+        showAlert('Не удалось загрузить данные');
       }
     })
 

@@ -18,7 +18,7 @@ const activateForm = () => {
 
 }
 
-const setAdFormSubmit = () => {
+const adFormSubmit = () => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -28,13 +28,15 @@ const setAdFormSubmit = () => {
         form.reset();
 
       },
-      () => showErrorMessage(),
+      () =>
+        showErrorMessage(),
+      form.reset(),
       new FormData(evt.target),
     );
   });
 };
 
-const setAdFormReset = () => {
+const adFormReset = () => {
   const buttonReset = form.querySelector('.ad-form__reset');
   buttonReset.addEventListener('click', () => {
     form.reset();
@@ -42,4 +44,4 @@ const setAdFormReset = () => {
   })
 };
 
-export { deactivateForm, activateForm, setAdFormSubmit, setAdFormReset }
+export { deactivateForm, activateForm, adFormSubmit, adFormReset }

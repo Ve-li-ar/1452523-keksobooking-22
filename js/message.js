@@ -1,16 +1,16 @@
 import { isEscEvent } from './util.js';
 
-const successTemplate = document.querySelector('#success').content.querySelector('.success');
-const errorTemplate = document.querySelector('#error').content.querySelector('.error');
-const messageSuccess = successTemplate.cloneNode(true);
-const messageError = errorTemplate.cloneNode(true);
-
-//закрытие сообщения
-const closeMessage = (message) => {
-  message.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscKeydown(message));
-  document.removeEventListener('click', onClick(message));
-};
+//находим шаблон успешного сообщения
+const successTemplate = document.querySelector('#success');
+//находим в нем класс success
+const successMessageFromTemplate = successTemplate.content.querySelector('.success');
+//находим шаблон сообщения об ошибке
+const errorTemplate = document.querySelector('#error');
+//находим в нем класс error
+const errorMessageFromTemplate = errorTemplate.content.querySelector('.error');
+//клонируем шаблоны из сообщений
+const messageSuccess = successMessageFromTemplate.cloneNode(true);
+const messageError = errorMessageFromTemplate.cloneNode(true);
 
 //закрытие сообщения через эскейп
 const onPopupEscKeydown = (message) => {
@@ -22,7 +22,7 @@ const onPopupEscKeydown = (message) => {
   }
 };
 
-//закрытие сообщения по клику
+//закрытие сообщения по клику на пустое место
 const onClick = (message) => {
   return (evt) => {
     evt.preventDefault();
@@ -30,7 +30,16 @@ const onClick = (message) => {
   }
 };
 
+//закрытие сообщения
+//удаляем слушатели
+const closeMessage = (message) => {
+  message.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscKeydown(message));
+  document.removeEventListener('click', onClick(message));
+};
+
 //показать сообщение в случае успеха
+//добавляем чайлда в конец боди и удаляем у него хидден
 const showSuccessMessage = () => {
   document.body.appendChild(messageSuccess);
   messageSuccess.classList.remove('hidden');
@@ -40,6 +49,7 @@ const showSuccessMessage = () => {
 };
 
 //сообщение в случае ошибки
+//добавляем чайлда в конец боди и удаляем у него хидден
 const showErrorMessage = () => {
   const buttonClose = messageError.querySelector('.error__button');
   document.body.appendChild(messageError);

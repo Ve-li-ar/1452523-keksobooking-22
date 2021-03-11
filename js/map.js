@@ -72,7 +72,7 @@ const createPopupCard = (apartment) => {
 
 //инициализация пинов
 const initMainPins = (map, apartments) => {
-  apartments().forEach((item) => {
+  apartments.forEach((item) => {
 
     const icon = window.L.icon({
       iconUrl: 'img/pin.svg',
@@ -81,8 +81,8 @@ const initMainPins = (map, apartments) => {
     });
 
     const marker = window.L.marker({
-      lat: item.location.x,
-      lng: item.location.y,
+      lat: item.location.lat,
+      lng: item.location.lng,
     }, { icon },
     );
 
