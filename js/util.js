@@ -2,7 +2,7 @@ const ALERT_SHOW_TIME = 5000;
 
 //закрытие по эскейпу
 const isEscEvent = (evt) => {
-  return evt.key === ('Escape' || 'Esc');
+  return evt.key === 'Escape' || evt.key === 'Esc';
 };
 
 //сообщение об ошибке

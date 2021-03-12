@@ -40,7 +40,6 @@ const adFormReset = () => {
   const buttonReset = form.querySelector('.ad-form__reset');
   buttonReset.addEventListener('click', () => {
     form.reset();
-
   })
 };
 

@@ -3,61 +3,58 @@ import { isEscEvent } from './util.js';
 //находим шаблон успешного сообщения
 const successTemplate = document.querySelector('#success');
 //находим в нем класс success
-const successMessageFromTemplate = successTemplate.content.querySelector('.success');
+//const successMessageFromTemplate = successTemplate.content.querySelector('.success');
 //находим шаблон сообщения об ошибке
 const errorTemplate = document.querySelector('#error');
 //находим в нем класс error
-const errorMessageFromTemplate = errorTemplate.content.querySelector('.error');
+//const errorMessageFromTemplate = errorTemplate.content.querySelector('.error');
 //клонируем шаблоны из сообщений
-const messageSuccess = successMessageFromTemplate.cloneNode(true);
-const messageError = errorMessageFromTemplate.cloneNode(true);
+//const messageSuccess = successMessageFromTemplate.cloneNode(true);
+//const messageError = errorMessageFromTemplate.cloneNode(true);
+const closeButton = document.querySelector('.error__button');
 
 //закрытие сообщения через эскейп
-const onPopupEscKeydown = (message) => {
-  return (evt) => {
-    if (isEscEvent(evt)) {
-      evt.preventDefault();
-      closeMessage(message);
-    }
+const onPopupEscKeydown = (evt) => {
+  if (isEscEvent(evt)) {
+    evt.preventDefault();
+    closeMessage;
   }
-};
+}
 
 //закрытие сообщения по клику на пустое место
-const onClick = (message) => {
-  return (evt) => {
-    evt.preventDefault();
-    closeMessage(message);
-  }
+const onClick = (evt) => {
+  evt.preventDefault();
+  closeMessage;
 };
 
 //закрытие сообщения
 //удаляем слушатели
-const closeMessage = (message) => {
-  message.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscKeydown(message));
-  document.removeEventListener('click', onClick(message));
+const closeMessage = () => {
+  document.querySelectorAll('.success, .error').forEach((message) => message.remove());
+  document.removeEventListener('click', onClick);
+  document.removeEventListener('keydown', onPopupEscKeydown);
 };
 
-//показать сообщение в случае успеха
-//добавляем чайлда в конец боди и удаляем у него хидден
+
+//Универсальная функция показа сообщения
+const showMessage = (message) => {
+  document.body.appendChild(message);
+  message.classList.remove('hidden');
+  message.style.zIndex = '9999999';
+  document.addEventListener('click', onClick);
+  document.addEventListener('keydown', onPopupEscKeydown);
+};
+
+//Функция отображения успешного сообщения
 const showSuccessMessage = () => {
-  document.body.appendChild(messageSuccess);
-  messageSuccess.classList.remove('hidden');
-  messageSuccess.style.zIndex = '100';
-  document.addEventListener('click', onClick(messageSuccess));
-  document.addEventListener('keydown', onPopupEscKeydown(messageSuccess));
+  const successMessage = successTemplate.cloneNode(true);
+  showMessage(successMessage);
 };
 
-//сообщение в случае ошибки
-//добавляем чайлда в конец боди и удаляем у него хидден
+// Функция отображения сообщения об ошибке.
 const showErrorMessage = () => {
-  const buttonClose = messageError.querySelector('.error__button');
-  document.body.appendChild(messageError);
-  messageError.classList.remove('hidden');
-  messageError.style.zIndex = '100';
-  buttonClose.addEventListener('click', onClick(messageError));
-  document.addEventListener('click', onClick(messageError));
-  document.addEventListener('keydown', onPopupEscKeydown(messageError));
+  const errorMessage = errorTemplate.cloneNode(true);
+  showMessage(errorMessage);
+  closeButton.addEventListener('click', onClick);
 };
-
 export { showSuccessMessage, showErrorMessage }
