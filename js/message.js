@@ -1,30 +1,22 @@
 import { isEscEvent } from './util.js';
 
 //находим шаблон успешного сообщения
-const successTemplate = document.querySelector('#success');
-//находим в нем класс success
-//const successMessageFromTemplate = successTemplate.content.querySelector('.success');
+const successTemplate = document.querySelector('#success').content.querySelector('.success');
 //находим шаблон сообщения об ошибке
-const errorTemplate = document.querySelector('#error');
-//находим в нем класс error
-//const errorMessageFromTemplate = errorTemplate.content.querySelector('.error');
-//клонируем шаблоны из сообщений
-//const messageSuccess = successMessageFromTemplate.cloneNode(true);
-//const messageError = errorMessageFromTemplate.cloneNode(true);
-const closeButton = document.querySelector('.error__button');
+const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 
 //закрытие сообщения через эскейп
 const onPopupEscKeydown = (evt) => {
   if (isEscEvent(evt)) {
     evt.preventDefault();
-    closeMessage;
+    closeMessage();
   }
 }
 
 //закрытие сообщения по клику на пустое место
 const onClick = (evt) => {
   evt.preventDefault();
-  closeMessage;
+  closeMessage();
 };
 
 //закрытие сообщения
@@ -55,6 +47,6 @@ const showSuccessMessage = () => {
 const showErrorMessage = () => {
   const errorMessage = errorTemplate.cloneNode(true);
   showMessage(errorMessage);
-  closeButton.addEventListener('click', onClick);
 };
+
 export { showSuccessMessage, showErrorMessage }

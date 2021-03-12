@@ -13,7 +13,8 @@ const getData = (onSuccess, onError) => {
     .then((response) => {
       if (response.ok) {
         return response.json();
-      } throw new Error('Не удалось загрузить данные');
+      }
+      throw new Error('Не удалось загрузить данные');
     })
 
     .then(onSuccess)
@@ -31,7 +32,8 @@ const sendData = (onSuccess, onError, body) => {
     .then((response) => {
       if (response.ok) {
         onSuccess();
-      } throw new Error('Ошибка передачи данных');
+      }
+      throw new Error('Ошибка передачи данных');
     })
     .catch(onError);
 };
