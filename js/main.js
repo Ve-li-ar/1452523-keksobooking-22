@@ -10,10 +10,11 @@ getData(
   (apartments) => {
     initMainPin();
     initMainPins(apartments);
+    activateForm();
   },
   showErrorMessage,
 );
-activateForm();
+
 
 adFormSubmit();
 adFormReset();
