@@ -7,43 +7,43 @@
 // Экспорты
 
 import { createCard } from './card.js';
+
+const MAIN_LATITUDE = 35.6894;
+const MAIN_LONGITUDE = 139.692;
+const MAIN_ZOOM = 10;
+
 //инициализация карты
-const initMap = () => {
-  const map = window.L.map('map-canvas')
+const map = window.L.map('map-canvas')
 
-    .setView({
-      lat: 35.6894,
-      lng: 139.692,
-    }, 12);
+  .setView({
+    lat: 35.6894,
+    lng: 139.692,
+  }, 12);
 
-  window.L.tileLayer(
-    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    })
-    .addTo(map);
-  return map;
-}
+window.L.tileLayer(
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  })
+  .addTo(map);
 
-
+const mainPinMarker = window.L.marker(
+  {
+    lat: 35.6894,
+    lng: 139.692,
+  },
+  {
+    draggable: true,
+    icon: window.L.icon({
+      iconUrl: 'img/main-pin.svg',
+      iconSize: [50, 82],
+      iconAnchor: [25, 41],
+    }),
+  },
+)
 
 // Ставим главный пин на карту
 const initMainPin = (map) => {
-  const mainPinMarker = window.L.marker(
-    {
-      lat: 35.6894,
-      lng: 139.692,
-    },
-    {
-      draggable: true,
-      icon: window.L.icon({
-        iconUrl: 'img/main-pin.svg',
-        iconSize: [50, 82],
-        iconAnchor: [25, 41],
-      }),
-    },
-  )
-
   // При перемещении главного пина меняется значение поля ввода адреса
 
   mainPinMarker.on('moveend', (evt) => {
@@ -56,9 +56,9 @@ const initMainPin = (map) => {
   });
 
   mainPinMarker.addTo(map);
+  // TODO вручную вызываем событие передвижения пина. Это что бы координаты в поле адрес проставились
+  mainPinMarker.fireEvent('moveend');
 };
-
-
 
 // При перемещении главного пина меняется значение поля ввода адреса
 
@@ -94,4 +94,12 @@ const initMainPins = (map, apartments) => {
   });
 };
 
-export { initMainPins, initMainPin, initMap }
+// TODO функция сброса красного пина
+const resetMainMarker = () => {
+  mainPinMarker.setLatLng([MAIN_LATITUDE, MAIN_LONGITUDE]);
+  // TODO вручную вызываем событие передвижения пина. Это что бы координаты в поле адрес проставились
+  mainPinMarker.fireEvent('moveend');
+  map.setView(new window.L.LatLng(MAIN_LATITUDE, MAIN_LONGITUDE), MAIN_ZOOM);
+};
+
+export { initMainPins, initMainPin, resetMainMarker }

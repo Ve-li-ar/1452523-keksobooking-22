@@ -31,7 +31,7 @@ const sendData = (onSuccess, onError, body) => {
   )
     .then((response) => {
       if (response.ok) {
-        onSuccess();
+        return onSuccess();
       }
       throw new Error('Ошибка передачи данных');
     })

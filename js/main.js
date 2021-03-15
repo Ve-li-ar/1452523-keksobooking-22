@@ -1,15 +1,18 @@
 import './util.js';
 import './map.js';
 import { getData } from './data-server.js';
-import { initMainPins, initMainPin, initMap } from './map.js';
-import { adFormSubmit, adFormReset } from './form.js'
+import { initMainPins, initMainPin } from './map.js';
+import { adFormSubmit, adFormReset } from './form.js';
+import { showErrorMessage } from './message.js';
 
 
-getData((apartments) => {
-  const map = initMap();
-  initMainPin(map);
-  initMainPins(map, apartments);
-})
+getData(
+  (apartments) => {
+    initMainPin();
+    initMainPins(apartments);
+  },
+  showErrorMessage,
+);
 
 adFormSubmit();
 adFormReset();

@@ -27,7 +27,6 @@ const closeMessage = () => {
   document.removeEventListener('keydown', onPopupEscKeydown);
 };
 
-
 //Универсальная функция показа сообщения
 const showMessage = (message) => {
   document.body.appendChild(message);
@@ -44,8 +43,11 @@ const showSuccessMessage = () => {
 };
 
 // Функция отображения сообщения об ошибке.
-const showErrorMessage = () => {
+const showErrorMessage = (error) => {
   const errorMessage = errorTemplate.cloneNode(true);
+  if (error) {
+    errorMessage.querySelector('.error__message').textContent = error.message;
+  }
   showMessage(errorMessage);
 };
 
