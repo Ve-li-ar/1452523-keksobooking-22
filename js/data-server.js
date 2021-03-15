@@ -1,7 +1,6 @@
 const GET_URL = 'https://22.javascript.pages.academy/keksobooking/data';
 const POST_URL = 'https://22.javascript.pages.academy/keksobooking';
 
-
 //приемка данных с сервера
 const getData = (onSuccess, onError) => {
   fetch(GET_URL,
