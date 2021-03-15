@@ -14,7 +14,6 @@ const createCard = (card) => {
   cardExample.querySelector('.popup__description').textContent = card.offer.description;
   cardExample.querySelector('.popup__photos').src = card.offer.photos;
   cardExample.querySelector('.popup__avatar').src = card.author.avatar;
-
   return cardExample;
 }
 
