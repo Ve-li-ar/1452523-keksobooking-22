@@ -29,9 +29,10 @@ const adFormSubmit = () => {
         form.reset();
 
       },
-      () =>
-        showErrorMessage(),
-      form.reset(),
+      () => {
+        showErrorMessage();
+        form.reset();
+      },
       new FormData(evt.target),
     );
   });

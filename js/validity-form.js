@@ -1,6 +1,6 @@
-const MIN__LENGTH = 30;
-const MAX__LENGTH = 100;
-const MAX__ROOMS = 100;
+const MIN_LENGTH = 30;
+const MAX_LENGTH = 100;
+const MAX_ROOMS = 100;
 
 const priceMinOnNight = {
   bungalow: 0,
@@ -10,7 +10,7 @@ const priceMinOnNight = {
 }
 
 const inputFormTitle = document.querySelector('#title');
-const questsNumber = document.querySelector('#capacity');
+const guestsNumber = document.querySelector('#capacity');
 const roomsNumber = document.querySelector('#room_number');
 
 const selectFormType = document.querySelector('#type');
@@ -38,41 +38,38 @@ selectTimeOut.addEventListener('change', function (evt) {
 inputFormTitle.addEventListener('input', () => {
   const valueLength = inputFormTitle.value.length;
 
-  if (valueLength < MIN__LENGTH) {
-    inputFormTitle.setCustomValidity(`Минимальное количество символов 30. Введите ещё ${MIN__LENGTH - valueLength} символов`);
-  }
-
-  else if (valueLength > MAX__LENGTH) {
-    inputFormTitle.setCustomValidity(`Максимальное количество символов 100. Удалите ${valueLength - MAX__LENGTH} символов`);
-  }
-
-  else {
+  if (valueLength < MIN_LENGTH) {
+    inputFormTitle.setCustomValidity(`Минимальное количество символов 30. Введите ещё ${MIN_LENGTH - valueLength} символов`);
+  } else if (valueLength > MAX_LENGTH) {
+    inputFormTitle.setCustomValidity(`Максимальное количество символов 100. Удалите ${valueLength - MAX_LENGTH} символов`);
+  } else {
     inputFormTitle.setCustomValidity('');
   }
+
+  inputFormTitle.reportValidity();
 });
 
 //валидация для соотношения количества комнат и гостей
-const ratioOfRoomsToQuests = () => {
-  const rooms = roomsNumber.value;
-  const quests = questsNumber.value;
+const ratioOfRoomsToGuests = () => {
+  const rooms = parseInt(roomsNumber.value, 10);
+  const guests = parseInt(guestsNumber.value, 10);
 
-  if (rooms == MAX__ROOMS && quests != 0) {
-    questsNumber.setCustomValidity('Вы выбрали вариант не подходящий для заселения');
-  } else if (quests == 0 && rooms != MAX__ROOMS) {
-    questsNumber.setCustomValidity('Вы выбрали вариант не подходящий для заселения');
-  } else if (rooms < quests) {
-    questsNumber.setCustomValidity('Невозможно заселить. Выберите большее количество комнат');
+  if (rooms === MAX_ROOMS ^ guests == 0) {
+    guestsNumber.setCustomValidity('Вы выбрали вариант не подходящий для заселения');
+  } else if (rooms < guests) {
+    guestsNumber.setCustomValidity('Невозможно заселить. Выберите большее количество комнат');
   } else {
-    questsNumber.setCustomValidity('');
+
+    guestsNumber.setCustomValidity('');
   }
 }
 
-questsNumber.addEventListener('change', () => {
-  ratioOfRoomsToQuests();
+guestsNumber.addEventListener('change', () => {
+  ratioOfRoomsToGuests();
 })
 
 roomsNumber.addEventListener('change', () => {
-  ratioOfRoomsToQuests();
+  ratioOfRoomsToGuests();
 })
 
 
