@@ -15,6 +15,5 @@ getData(
   showErrorMessage,
 );
 
-
 adFormSubmit();
 adFormReset();
