@@ -43,7 +43,7 @@ const mainPinMarker = window.L.marker(
 )
 
 // Ставим главный пин на карту
-const initMainPin = (map) => {
+const initMainPin = () => {
   // При перемещении главного пина меняется значение поля ввода адреса
 
   mainPinMarker.on('moveend', (evt) => {
@@ -71,7 +71,7 @@ const createPopupCard = (apartment) => {
 }
 
 //инициализация пинов
-const initMainPins = (map, apartments) => {
+const initMainPins = (apartments) => {
   apartments.forEach((item) => {
 
     const icon = window.L.icon({

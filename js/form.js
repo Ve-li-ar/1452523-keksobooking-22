@@ -3,7 +3,7 @@ import { showSuccessMessage, showErrorMessage } from './message.js';
 import { resetMainMarker } from './map.js';
 
 const form = document.querySelector('.ad-form');
-const mapFilter = document.querySelector('.map-filters');
+const mapFilter = document.querySelector('.map__filters');
 
 //неактивность карты
 const deactivateForm = () => {
