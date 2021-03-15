@@ -47,6 +47,7 @@ inputFormTitle.addEventListener('input', () => {
   }
 
   inputFormTitle.reportValidity();
+
 });
 
 //валидация для соотношения количества комнат и гостей
@@ -54,14 +55,16 @@ const ratioOfRoomsToGuests = () => {
   const rooms = parseInt(roomsNumber.value, 10);
   const guests = parseInt(guestsNumber.value, 10);
 
-  if (rooms === MAX_ROOMS ^ guests == 0) {
+  if (rooms === MAX_ROOMS ^ guests === 0) {
     guestsNumber.setCustomValidity('Вы выбрали вариант не подходящий для заселения');
   } else if (rooms < guests) {
     guestsNumber.setCustomValidity('Невозможно заселить. Выберите большее количество комнат');
   } else {
-
     guestsNumber.setCustomValidity('');
   }
+
+  guestsNumber.reportValidity();
+
 }
 
 guestsNumber.addEventListener('change', () => {
