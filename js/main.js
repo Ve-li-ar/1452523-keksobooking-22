@@ -1,6 +1,5 @@
 import './util.js';
 import './map.js';
-import './selected-form.js';
 import './validity-form.js';
 import { getData } from './data-server.js';
 import { initMainPins, initMainPin } from './map.js';
