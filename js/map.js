@@ -76,7 +76,6 @@ const createPopupCard = (apartment) => {
   return popupElement;
 }
 
-let marker;
 let markers = [];
 //инициализация пинов
 const initMainPins = (apartments) => {
@@ -85,7 +84,7 @@ const initMainPins = (apartments) => {
     const icon = window.L.icon({
       iconUrl: 'img/pin.svg',
       iconSize: [PIN_SIZE_X, PIN_SIZE_Y],
-      iconAnchor: [MIN_PIN_SIZE_X, MIN_PIN_SIZE_Y]
+      iconAnchor: [MIN_PIN_SIZE_X, MIN_PIN_SIZE_Y],
     });
 
     const marker = window.L.marker({
