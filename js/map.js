@@ -7,7 +7,6 @@
 // Экспорты
 
 import { createCard } from './card.js';
-import { filterByTypes } from './filter.js';
 
 const MAIN_LATITUDE = 35.6894;
 const MAIN_LONGITUDE = 139.692;
@@ -77,9 +76,11 @@ const createPopupCard = (apartment) => {
   return popupElement;
 }
 
+let marker;
+let markers = [];
 //инициализация пинов
 const initMainPins = (apartments) => {
-  apartments.slice(0, 10).forEach((item) => {
+  apartments.slice(0, VISIBLE_ADS).forEach((item) => {
 
     const icon = window.L.icon({
       iconUrl: 'img/pin.svg',
@@ -98,6 +99,7 @@ const initMainPins = (apartments) => {
       .bindPopup(() => createPopupCard(item), {
         keepInView: true,
       });
+    markers.push(marker);
   });
 };
 
@@ -109,10 +111,31 @@ const resetMainMarker = () => {
   map.setView(new window.L.LatLng(MAIN_LATITUDE, MAIN_LONGITUDE), MAIN_ZOOM);
 };
 
-const updatePinsOnMap = (apartments) => {
-  window.L.layerGroup().addTo(map).clearLayers();
-  const filteredAdverts = apartments.slice(0, VISIBLE_ADS).filter(filterByTypes);
-  initMainPins(filteredAdverts);
-};
+//const pinList = [];
 
-export { initMainPins, initMainPin, resetMainMarker, updatePinsOnMap }
+//const removeMarkers = () => {
+//pinList.forEach((marker) => {
+//  marker.remove();
+// })
+//}
+
+//const updatePinsOnMap = (apartments) => {
+
+//apartments.slice(0, VISIBLE_ADS).forEach((item) => {
+//const pin = initMainPins(item.location.lat, item.location.lng).addTo(map).bindPopup(() => createCard(item));
+//pinList.push(pin);
+//});
+//}
+
+//const updatePinsOnMap = (apartments) => {
+// window.L.layerGroup().addTo(map).clearLayers();
+// const filteredAdverts = apartments.slice(0, VISIBLE_ADS).filter(filterListener);
+// initMainPins(filteredAdverts);
+//};
+
+///const reRenderMarkers = (apartments) => {
+// removeMarkers();
+//updatePinsOnMap(apartments);
+//}
+
+export { initMainPins, initMainPin, resetMainMarker, markers }
