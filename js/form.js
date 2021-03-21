@@ -46,4 +46,9 @@ const adFormReset = () => {
   });
 };
 
-export { deactivateForm, activateForm, adFormSubmit, adFormReset }
+export {
+  deactivateForm,
+  activateForm,
+  adFormSubmit,
+  adFormReset
+}

@@ -1,29 +1,35 @@
-import { initMainPins, markers } from './map.js';
+import { initMainPins, removeMarkers } from './map.js';
 
 const houseType = document.querySelector('#housing-type');
+const mapFilter = document.querySelector('.map__filters');
 
-let filterPins = [];
+// TODO используй стрелочные функции
+const setHousingTypeChange = (pins) => {
+  // TODO в 8.2 добавится фильтрация по другим полям
+  //  По этому давай сделаем следующее:
+  //  1. установим слушатель не на houseType, а на .map__filters. Это тэг form
+  mapFilter.addEventListener('change', function () {
 
-const setHousingTypeChange = function (pins, map) {
-  houseType.addEventListener('change', function (evt) {
-    if (evt.target.value !== 'any') {
-      markers.forEach((adPin) => {
-        adPin.remove();
-      })
-      markers.length = 0;
+    if (housingFilter(pin.offer)) {
+      removeMarkers();
 
-      filterPins = [];
+      const filterPins = [];
       pins.forEach((pin) => {
-        if (pin.offer.type === evt.target.value) {
+        if (housingFilter(pin.offer)) {
           filterPins.push(pin);
         }
       })
-      initMainPins(filterPins, map);
+      initMainPins(filterPins);
     }
     else {
-      initMainPins(pins, map);
+      initMainPins(pins);
     }
   })
+}
+
+// TODO один из возможных вариантов реализации
+const housingFilter = (offer) => {
+  return houseType.value === 'any' || offer.type === houseType.value;
 }
 
 export { setHousingTypeChange };

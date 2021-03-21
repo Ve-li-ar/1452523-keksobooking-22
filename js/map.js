@@ -76,7 +76,8 @@ const createPopupCard = (apartment) => {
   return popupElement;
 }
 
-let markers = [];
+const markers = [];
+
 //инициализация пинов
 const initMainPins = (apartments) => {
   apartments.slice(0, VISIBLE_ADS).forEach((item) => {
@@ -110,13 +111,12 @@ const resetMainMarker = () => {
   map.setView(new window.L.LatLng(MAIN_LATITUDE, MAIN_LONGITUDE), MAIN_ZOOM);
 };
 
-//const pinList = [];
-
-//const removeMarkers = () => {
-//pinList.forEach((marker) => {
-//  marker.remove();
-// })
-//}
+const removeMarkers = () => {
+  markers.forEach((marker) => {
+    marker.remove();
+  })
+  markers.length = 0;
+}
 
 //const updatePinsOnMap = (apartments) => {
 
@@ -137,4 +137,4 @@ const resetMainMarker = () => {
 //updatePinsOnMap(apartments);
 //}
 
-export { initMainPins, initMainPin, resetMainMarker, markers }
+export { initMainPins, initMainPin, resetMainMarker, markers, removeMarkers }
