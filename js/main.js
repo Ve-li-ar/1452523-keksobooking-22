@@ -14,8 +14,8 @@ getData(
     initMainPins(apartments);
     setHousingTypeChange(apartments);
     activateForm();
-    adFormSubmit();
-    adFormReset();
+    adFormSubmit(apartments);
+    adFormReset(apartments);
   },
   showErrorMessage,
 );
