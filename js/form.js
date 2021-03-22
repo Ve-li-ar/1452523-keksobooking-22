@@ -1,6 +1,7 @@
 import { sendData } from './data-server.js';
 import { showSuccessMessage, showErrorMessage } from './message.js';
-import { resetMainMarker } from './map.js';
+import { initMainPins, removeMarkers, resetMainMarker } from './map.js';
+import { resetFilterForm } from './filter.js';
 
 const form = document.querySelector('.ad-form');
 const mapFilter = document.querySelector('.map__filters');
@@ -19,7 +20,7 @@ const activateForm = () => {
   form.querySelector('fieldset').removeAttribute('disabled', 'disabled');
 }
 
-const adFormSubmit = () => {
+const adFormSubmit = (apartments) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -27,7 +28,9 @@ const adFormSubmit = () => {
       () => {
         showSuccessMessage();
         form.reset();
-
+        resetFilterForm();
+        removeMarkers();
+        initMainPins(apartments);
       },
       () => {
         showErrorMessage();
@@ -38,11 +41,14 @@ const adFormSubmit = () => {
   });
 };
 
-const adFormReset = () => {
+const adFormReset = (apartments) => {
   form.addEventListener('reset', (evt) => {
     evt.preventDefault();
     form.reset();
     resetMainMarker();
+    resetFilterForm();
+    removeMarkers();
+    initMainPins(apartments);
   });
 };
 

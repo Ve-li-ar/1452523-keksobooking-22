@@ -20,4 +20,8 @@ const housingFilter = (offer) => {
   return houseType.value === 'any' || offer.type === houseType.value;
 }
 
-export { setHousingTypeChange };
+const resetFilterForm = () => {
+  mapFilter.reset();
+}
+
+export { setHousingTypeChange, resetFilterForm };

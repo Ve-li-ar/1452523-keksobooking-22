@@ -14,9 +14,10 @@ getData(
     initMainPins(apartments);
     setHousingTypeChange(apartments);
     activateForm();
+    adFormSubmit();
+    adFormReset();
   },
   showErrorMessage,
 );
 
-adFormSubmit();
-adFormReset();
+
