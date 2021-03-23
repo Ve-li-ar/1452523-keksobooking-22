@@ -8,6 +8,7 @@ const housePrice = document.querySelector('#housing-price');
 
 const PRICES = {
   LOW: {
+    MIN: 0,
     MAX: 10000,
   },
   MIDDLE: {
@@ -16,6 +17,7 @@ const PRICES = {
   },
   HIGH: {
     MIN: 50000,
+    MAX: Infinity,
   },
 };
 
@@ -55,7 +57,7 @@ const housingCapacityFilter = (offer) => {
 //цена
 const housingPriceFilter = (offer) => {
   const settings = PRICES[housePrice.value]
-  return housePrice.value === 'any' || (offer.price >= settings.min && offer.price <= settings.max);
+  return housePrice.value === 'any' || (offer.price >= settings.MIN && offer.price <= settings.MAX);
 };
 
 //const housingPriceFilter = (offer) => {
