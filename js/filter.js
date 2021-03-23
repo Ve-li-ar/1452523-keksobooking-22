@@ -6,7 +6,18 @@ const houseRooms = document.querySelector('#housing-rooms');
 const houseGuests = document.querySelector('#housing-guests');
 const housePrice = document.querySelector('#housing-price');
 
-
+const PRICES = {
+  LOW: {
+    MAX: 10000,
+  },
+  MIDDLE: {
+    MIN: 10000,
+    MAX: 50000,
+  },
+  HIGH: {
+    MIN: 50000,
+  },
+};
 
 const setHousingTypeChange = (pins) => {
   mapFilter.addEventListener('change', () => {
@@ -33,17 +44,25 @@ const housingTypeFilter = (offer) => {
 
 //комнаты
 const housingRoomsFilter = (offer) => {
-  return houseRooms.value === 'any' || offer.rooms === houseRooms.value;
+  return houseRooms.value === 'any' || offer.rooms === Number.houseRooms.value;
 };
 
 //количество гостей
 const housingCapacityFilter = (offer) => {
-  return houseGuests.value === 'any' || offer.guests === houseGuests.value;
+  return houseGuests.value === 'any' || offer.guests === Number.houseGuests.value;
 };
 
 //цена
+//const housingPriceFilter = (offer) => {
+//const settings = PRICES[housePrice.value]
+//return housePrice.value === 'any' || (offer.price >= settings.min && offer.price <= settings.max);
+//};
+
 const housingPriceFilter = (offer) => {
-  return housePrice.value === 'any' || offer.price === housePrice.value;
+  const settings = PRICES[housePrice.value];
+  return housePrice.value === 'middle' || (offer.price < 10000);
+
+  return housePrice.value === 'any' || (offer.price >= settings.min && offer.price <= settings.max);
 };
 
 const resetFilterForm = () => {
