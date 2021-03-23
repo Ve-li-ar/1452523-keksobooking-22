@@ -1,5 +1,3 @@
-/* global _:readonly */
-
 import { initMainPins, removeMarkers } from './map.js';
 
 const mapFilter = document.querySelector('.map__filters');
@@ -7,7 +5,8 @@ const houseType = document.querySelector('#housing-type');
 const houseRooms = document.querySelector('#housing-rooms');
 const houseGuests = document.querySelector('#housing-guests');
 const housePrice = document.querySelector('#housing-price');
-const RERENDER_DELAY = 5000;
+const RERENDER_DELAY = 500;
+const MAX_NUMBER_PINS = 10;
 
 const PRICES = {
   low: {
@@ -24,11 +23,23 @@ const PRICES = {
   },
 };
 
-const setHousingTypeChange = (_.debounce((pins) => {
-  mapFilter.addEventListener('change', () => {
+const debounce = (cb, ms) => {
+  let timer;
+
+  return () => {
+    if (timer) {
+      window.clearTimeout(timer);
+    }
+
+    timer = setTimeout(() => cb(), ms)
+  }
+};
+
+const setHousingTypeChange = (pins) => {
+  mapFilter.addEventListener('change', debounce(() => {
     removeMarkers();
     const filterPins = [];
-    pins.forEach((pin) => {
+    for (let pin of pins) {
       if (
         housingTypeFilter(pin.offer) &&
         housingPriceFilter(pin.offer) &&
@@ -37,11 +48,14 @@ const setHousingTypeChange = (_.debounce((pins) => {
         featuresFilter(pin.offer)
       ) {
         filterPins.push(pin);
+        if (filterPins.length >= MAX_NUMBER_PINS) {
+          break;
+        }
       }
-    })
+    }
     initMainPins(filterPins);
-  })
-}, RERENDER_DELAY));
+  }, RERENDER_DELAY))
+}
 
 //тип
 const housingTypeFilter = (offer) => {
