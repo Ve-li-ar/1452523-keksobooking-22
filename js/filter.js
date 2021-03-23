@@ -53,17 +53,17 @@ const housingCapacityFilter = (offer) => {
 };
 
 //цена
-//const housingPriceFilter = (offer) => {
-//const settings = PRICES[housePrice.value]
-//return housePrice.value === 'any' || (offer.price >= settings.min && offer.price <= settings.max);
-//};
-
 const housingPriceFilter = (offer) => {
-  const settings = PRICES[housePrice.value];
-  return housePrice.value === 'middle' || (offer.price < 10000);
-
+  const settings = PRICES[housePrice.value]
   return housePrice.value === 'any' || (offer.price >= settings.min && offer.price <= settings.max);
 };
+
+//const housingPriceFilter = (offer) => {
+//const settings = PRICES[housePrice.value];
+//return housePrice.value === 'middle' || (offer.price < 10000);
+
+//return housePrice.value === 'any' || (offer.price >= settings.min && offer.price <= settings.max);
+//};
 
 const resetFilterForm = () => {
   mapFilter.reset();
