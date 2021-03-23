@@ -7,15 +7,15 @@ const houseGuests = document.querySelector('#housing-guests');
 const housePrice = document.querySelector('#housing-price');
 
 const PRICES = {
-  LOW: {
+  low: {
     MIN: 0,
     MAX: 10000,
   },
-  MIDDLE: {
+  middle: {
     MIN: 10000,
     MAX: 50000,
   },
-  HIGH: {
+  high: {
     MIN: 50000,
     MAX: Infinity,
   },
@@ -46,12 +46,12 @@ const housingTypeFilter = (offer) => {
 
 //комнаты
 const housingRoomsFilter = (offer) => {
-  return houseRooms.value === 'any' || offer.rooms === Number.houseRooms.value;
+  return houseRooms.value === 'any' || offer.rooms === Number(houseRooms.value);
 };
 
 //количество гостей
 const housingCapacityFilter = (offer) => {
-  return houseGuests.value === 'any' || offer.guests === Number.houseGuests.value;
+  return houseGuests.value === 'any' || offer.guests === Number(houseGuests.value);
 };
 
 //цена
