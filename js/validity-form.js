@@ -2,7 +2,7 @@ const MIN_LENGTH = 30;
 const MAX_LENGTH = 100;
 const MAX_ROOMS = 100;
 
-const priceMinOnNight = {
+const pricesMinOnNight = {
   bungalow: 0,
   flat: 1000,
   house: 5000,
@@ -18,8 +18,8 @@ const inputFormPrice = document.querySelector('#price');
 
 //валидация для соотношения цены и типа жилья
 selectFormType.addEventListener('change', (evt) => {
-  inputFormPrice.placeholder = priceMinOnNight[evt.target.value];
-  inputFormPrice.setAttribute('min', priceMinOnNight[evt.target.value]);
+  inputFormPrice.placeholder = pricesMinOnNight[evt.target.value];
+  inputFormPrice.setAttribute('min', pricesMinOnNight[evt.target.value]);
 })
 
 //валидация для соотношения времени въезда и выезда
