@@ -1,4 +1,5 @@
 import { initMainPins, removeMarkers } from './map.js';
+import { debounce } from './util.js';
 
 const mapFilter = document.querySelector('.map__filters');
 const houseType = document.querySelector('#housing-type');
@@ -21,18 +22,6 @@ const PRICES = {
     MIN: 50000,
     MAX: Infinity,
   },
-};
-
-const debounce = (cb, ms) => {
-  let timer;
-
-  return () => {
-    if (timer) {
-      window.clearTimeout(timer);
-    }
-
-    timer = setTimeout(() => cb(), ms)
-  }
 };
 
 const setHousingTypeChange = (pins) => {

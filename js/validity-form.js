@@ -17,7 +17,7 @@ const selectFormType = document.querySelector('#type');
 const inputFormPrice = document.querySelector('#price');
 
 //валидация для соотношения цены и типа жилья
-selectFormType.addEventListener('change', function (evt) {
+selectFormType.addEventListener('change', (evt) => {
   inputFormPrice.placeholder = priceMinOnNight[evt.target.value];
   inputFormPrice.setAttribute('min', priceMinOnNight[evt.target.value]);
 })
@@ -26,11 +26,11 @@ selectFormType.addEventListener('change', function (evt) {
 const selectTimeIn = document.querySelector('#timein');
 const selectTimeOut = document.querySelector('#timeout');
 
-selectTimeIn.addEventListener('change', function (evt) {
+selectTimeIn.addEventListener('change', (evt) => {
   selectTimeOut.value = evt.target.value;
 })
 
-selectTimeOut.addEventListener('change', function (evt) {
+selectTimeOut.addEventListener('change', (evt) => {
   selectTimeIn.value = evt.target.value;
 })
 

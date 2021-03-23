@@ -103,10 +103,10 @@ const initMainPins = (apartments) => {
   });
 };
 
-// TODO функция сброса красного пина
+//  функция сброса красного пина
 const resetMainMarker = () => {
   mainPinMarker.setLatLng([MAIN_LATITUDE, MAIN_LONGITUDE]);
-  // TODO вручную вызываем событие передвижения пина. Это что бы координаты в поле адрес проставились
+  // вручную вызываем событие передвижения пина. Это что бы координаты в поле адрес проставились
   mainPinMarker.fireEvent('moveend');
   map.setView(new window.L.LatLng(MAIN_LATITUDE, MAIN_LONGITUDE), MAIN_ZOOM);
 };
@@ -117,24 +117,5 @@ const removeMarkers = () => {
   })
   markers.length = 0;
 }
-
-//const updatePinsOnMap = (apartments) => {
-
-//apartments.slice(0, VISIBLE_ADS).forEach((item) => {
-//const pin = initMainPins(item.location.lat, item.location.lng).addTo(map).bindPopup(() => createCard(item));
-//pinList.push(pin);
-//});
-//}
-
-//const updatePinsOnMap = (apartments) => {
-// window.L.layerGroup().addTo(map).clearLayers();
-// const filteredAdverts = apartments.slice(0, VISIBLE_ADS).filter(filterListener);
-// initMainPins(filteredAdverts);
-//};
-
-///const reRenderMarkers = (apartments) => {
-// removeMarkers();
-//updatePinsOnMap(apartments);
-//}
 
 export { initMainPins, initMainPin, resetMainMarker, markers, removeMarkers }

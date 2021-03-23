@@ -1,33 +1,21 @@
-const ALERT_SHOW_TIME = 5000;
-
 //закрытие по эскейпу
 const isEscEvent = (evt) => {
   return evt.key === 'Escape' || evt.key === 'Esc';
 };
 
-//сообщение об ошибке
-const showAlert = (message) => {
-  const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = 100;
-  alertContainer.style.position = 'absolute';
-  alertContainer.style.left = 0;
-  alertContainer.style.top = 0;
-  alertContainer.style.right = 0;
-  alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '30px';
-  alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = 'red';
+const debounce = (cb, ms) => {
+  let timer;
 
-  alertContainer.textContent = message;
+  return () => {
+    if (timer) {
+      window.clearTimeout(timer);
+    }
 
-  document.body.append(alertContainer);
-
-  setTimeout(() => {
-    alertContainer.remove();
-  }, ALERT_SHOW_TIME);
-}
+    timer = setTimeout(() => cb(), ms)
+  }
+};
 
 export {
-  showAlert,
+  debounce,
   isEscEvent
 };
