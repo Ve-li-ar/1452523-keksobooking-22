@@ -92,5 +92,3 @@ const createCard = ({ author, offer }) => {
 }
 
 export { createCard };
-
-
