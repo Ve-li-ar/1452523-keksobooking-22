@@ -63,11 +63,11 @@ const validationRatioOfRoomsToGuests = () => {
 }
 
 guestsNumber.addEventListener('change', () => {
-  ratioOfRoomsToGuests();
+  validationRatioOfRoomsToGuests();
 })
 
 roomsNumber.addEventListener('change', () => {
-  ratioOfRoomsToGuests();
+  validationRatioOfRoomsToGuests();
 })
 
-
+export { validationRatioOfRoomsToGuests };

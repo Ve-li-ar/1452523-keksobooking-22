@@ -9,7 +9,7 @@ const isVoidElement = (element) => {
   return element.length === 0 || element.src === null
 }
 
-const createCard = ({ author, offer, location }) => {
+const createCard = ({ author, offer }) => {
   const cardTemplate = document.querySelector('#card').content;
   const cardTemplateArticle = cardTemplate.querySelector('article');
 
@@ -33,7 +33,7 @@ const createCard = ({ author, offer, location }) => {
     articleTitle.textContent = offer.title;
   }
 
-  cardExample.querySelector('.popup__text--address').textContent = `Координаты: ${location.lat}, ${location.lng}`;
+  cardExample.querySelector('.popup__text--address').textContent = offer.address;
   cardExample.querySelector('.popup__text--price').textContent = `${offer.price}₽/ночь`;
   cardExample.querySelector('.popup__type').textContent = ApartmentTypes[offer.type.toUpperCase()];
   cardExample.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
