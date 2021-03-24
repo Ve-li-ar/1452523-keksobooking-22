@@ -1,11 +1,8 @@
 import { isEscEvent } from './util.js';
 
-//находим шаблон успешного сообщения
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
-//находим шаблон сообщения об ошибке
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 
-//закрытие сообщения через эскейп
 const onPopupEscKeydown = (evt) => {
   if (isEscEvent(evt)) {
     evt.preventDefault();
@@ -13,21 +10,17 @@ const onPopupEscKeydown = (evt) => {
   }
 }
 
-//закрытие сообщения по клику на пустое место
 const onClick = (evt) => {
   evt.preventDefault();
   closeMessage();
 };
 
-//закрытие сообщения
-//удаляем слушатели
 const closeMessage = () => {
   document.querySelectorAll('.success, .error').forEach((message) => message.remove());
   document.removeEventListener('click', onClick);
   document.removeEventListener('keydown', onPopupEscKeydown);
 };
 
-//Универсальная функция показа сообщения
 const showMessage = (message) => {
   document.body.appendChild(message);
   message.classList.remove('hidden');
@@ -36,13 +29,11 @@ const showMessage = (message) => {
   document.addEventListener('keydown', onPopupEscKeydown);
 };
 
-//Функция отображения успешного сообщения
 const showSuccessMessage = () => {
   const successMessage = successTemplate.cloneNode(true);
   showMessage(successMessage);
 };
 
-// Функция отображения сообщения об ошибке.
 const showErrorMessage = (error) => {
   const errorMessage = errorTemplate.cloneNode(true);
   if (error) {

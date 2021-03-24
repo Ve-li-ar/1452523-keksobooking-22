@@ -19,5 +19,3 @@ getData(
   },
   showErrorMessage,
 );
-
-

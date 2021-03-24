@@ -30,11 +30,11 @@ const setHousingTypeChange = (pins) => {
     const filterPins = [];
     for (let pin of pins) {
       if (
-        housingTypeFilter(pin.offer) &&
-        housingPriceFilter(pin.offer) &&
-        housingRoomsFilter(pin.offer) &&
-        housingCapacityFilter(pin.offer) &&
-        featuresFilter(pin.offer)
+        filteringByHouseType(pin.offer) &&
+        filteringByHouseRooms(pin.offer) &&
+        filteringByHousePrice(pin.offer) &&
+        filteringByHouseCapacity(pin.offer) &&
+        filteringByHousefeatures(pin.offer)
       ) {
         filterPins.push(pin);
         if (filterPins.length >= MAX_NUMBER_PINS) {
@@ -46,29 +46,24 @@ const setHousingTypeChange = (pins) => {
   }, RERENDER_DELAY))
 }
 
-//тип
-const housingTypeFilter = (offer) => {
+const filteringByHouseType = (offer) => {
   return houseType.value === 'any' || offer.type === houseType.value;
 };
 
-//комнаты
-const housingRoomsFilter = (offer) => {
+const filteringByHouseRooms = (offer) => {
   return houseRooms.value === 'any' || offer.rooms === Number(houseRooms.value);
 };
 
-//количество гостей
-const housingCapacityFilter = (offer) => {
+const filteringByHouseCapacity = (offer) => {
   return houseGuests.value === 'any' || offer.guests === Number(houseGuests.value);
 };
 
-//цена
-const housingPriceFilter = (offer) => {
+const filteringByHousePrice = (offer) => {
   const settings = PRICES[housePrice.value]
   return housePrice.value === 'any' || (offer.price >= settings.MIN && offer.price <= settings.MAX);
 };
 
-//удобства
-const featuresFilter = (offer) => {
+const filteringByHousefeatures = (offer) => {
   const checkedFeaturesFilter = mapFilter.querySelectorAll('.map__checkbox:checked');
   let i = 0;
   checkedFeaturesFilter.forEach((feature) => {

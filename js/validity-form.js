@@ -16,13 +16,11 @@ const roomsNumber = document.querySelector('#room_number');
 const selectFormType = document.querySelector('#type');
 const inputFormPrice = document.querySelector('#price');
 
-//валидация для соотношения цены и типа жилья
 selectFormType.addEventListener('change', (evt) => {
   inputFormPrice.placeholder = pricesMinOnNight[evt.target.value];
-  inputFormPrice.setAttribute('min', pricesMinOnNight[evt.target.value]);
+  inputFormPrice.min = pricesMinOnNight[evt.target.value];
 })
 
-//валидация для соотношения времени въезда и выезда
 const selectTimeIn = document.querySelector('#timein');
 const selectTimeOut = document.querySelector('#timeout');
 
@@ -34,7 +32,6 @@ selectTimeOut.addEventListener('change', (evt) => {
   selectTimeIn.value = evt.target.value;
 })
 
-//валидация для длины строки
 inputFormTitle.addEventListener('input', () => {
   const valueLength = inputFormTitle.value.length;
 
@@ -45,13 +42,11 @@ inputFormTitle.addEventListener('input', () => {
   } else {
     inputFormTitle.setCustomValidity('');
   }
-
   inputFormTitle.reportValidity();
 
 });
 
-//валидация для соотношения количества комнат и гостей
-const ratioOfRoomsToGuests = () => {
+const validationRatioOfRoomsToGuests = () => {
   const rooms = parseInt(roomsNumber.value, 10);
   const guests = parseInt(guestsNumber.value, 10);
 
