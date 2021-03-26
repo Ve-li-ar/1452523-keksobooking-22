@@ -2,7 +2,7 @@ import { sendData } from './data-server.js';
 import { showSuccessMessage, showErrorMessage } from './message.js';
 import { initMainPins, removeMarkers, resetMainMarker } from './map.js';
 import { resetFilterForm } from './filter.js';
-import { validationRatioOfRoomsToGuests } from './validity-form.js';
+import { validateRatioOfRoomsToGuests, validatePrice } from './validity-form.js';
 
 const form = document.querySelector('.ad-form');
 const mapFilter = document.querySelector('.map__filters');
@@ -22,7 +22,8 @@ const activateForm = () => {
 const adFormSubmit = (apartments) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    validationRatioOfRoomsToGuests();
+    validateRatioOfRoomsToGuests();
+    validatePrice();
     if (form.checkValidity()) {
       sendData(
         () => {
@@ -38,9 +39,12 @@ const adFormSubmit = (apartments) => {
         },
         new FormData(evt.target),
       );
+    } else {
+      form.reportValidity();
     }
   });
 };
+
 
 const adFormReset = (apartments) => {
   form.addEventListener('reset', (evt) => {

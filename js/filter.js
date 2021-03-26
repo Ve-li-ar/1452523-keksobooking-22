@@ -30,11 +30,11 @@ const setHousingTypeChange = (pins) => {
     const filterPins = [];
     for (let pin of pins) {
       if (
-        filteringByHouseType(pin.offer) &&
-        filteringByHouseRooms(pin.offer) &&
-        filteringByHousePrice(pin.offer) &&
-        filteringByHouseCapacity(pin.offer) &&
-        filteringByHousefeatures(pin.offer)
+        filterByHouseType(pin.offer) &&
+        filterByHouseRooms(pin.offer) &&
+        filterByHousePrice(pin.offer) &&
+        filterByHouseCapacity(pin.offer) &&
+        filterByHousefeatures(pin.offer)
       ) {
         filterPins.push(pin);
         if (filterPins.length >= MAX_NUMBER_PINS) {
@@ -46,24 +46,24 @@ const setHousingTypeChange = (pins) => {
   }, RERENDER_DELAY))
 }
 
-const filteringByHouseType = (offer) => {
+const filterByHouseType = (offer) => {
   return houseType.value === 'any' || offer.type === houseType.value;
 };
 
-const filteringByHouseRooms = (offer) => {
+const filterByHouseRooms = (offer) => {
   return houseRooms.value === 'any' || offer.rooms === Number(houseRooms.value);
 };
 
-const filteringByHouseCapacity = (offer) => {
+const filterByHouseCapacity = (offer) => {
   return houseGuests.value === 'any' || offer.guests === Number(houseGuests.value);
 };
 
-const filteringByHousePrice = (offer) => {
+const filterByHousePrice = (offer) => {
   const settings = PRICES[housePrice.value]
   return housePrice.value === 'any' || (offer.price >= settings.MIN && offer.price <= settings.MAX);
 };
 
-const filteringByHousefeatures = (offer) => {
+const filterByHousefeatures = (offer) => {
   const checkedFeaturesFilter = mapFilter.querySelectorAll('.map__checkbox:checked');
   let i = 0;
   checkedFeaturesFilter.forEach((feature) => {

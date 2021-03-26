@@ -16,9 +16,13 @@ const roomsNumber = document.querySelector('#room_number');
 const selectFormType = document.querySelector('#type');
 const inputFormPrice = document.querySelector('#price');
 
-selectFormType.addEventListener('change', (evt) => {
-  inputFormPrice.placeholder = pricesMinOnNight[evt.target.value];
-  inputFormPrice.min = pricesMinOnNight[evt.target.value];
+const validatePrice = () => {
+  inputFormPrice.placeholder = pricesMinOnNight[selectFormType.value];
+  inputFormPrice.min = pricesMinOnNight[selectFormType.value];
+}
+
+selectFormType.addEventListener('change', () => {
+  validatePrice();
 })
 
 const selectTimeIn = document.querySelector('#timein');
@@ -46,7 +50,7 @@ inputFormTitle.addEventListener('input', () => {
 
 });
 
-const validationRatioOfRoomsToGuests = () => {
+const validateRatioOfRoomsToGuests = () => {
   const rooms = parseInt(roomsNumber.value, 10);
   const guests = parseInt(guestsNumber.value, 10);
 
@@ -63,11 +67,11 @@ const validationRatioOfRoomsToGuests = () => {
 }
 
 guestsNumber.addEventListener('change', () => {
-  validationRatioOfRoomsToGuests();
+  validateRatioOfRoomsToGuests();
 })
 
 roomsNumber.addEventListener('change', () => {
-  validationRatioOfRoomsToGuests();
+  validateRatioOfRoomsToGuests();
 })
 
-export { validationRatioOfRoomsToGuests };
+export { validateRatioOfRoomsToGuests, validatePrice };
